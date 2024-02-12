@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<!--본문 내용 페이지 -->
+
+
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/common}">
+<th:block layout:fragment="addCss">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/main.css}">
+</th:block>
+
+<th:block layout:fragment="addScript">
+    <script th:src="@{/js/main.js}"></script>
+</th:block>
+
+<main layout:fragment="content">
+<h1>메인페이지 본문 ...</h1>
+</main>
+</html>
