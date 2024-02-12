@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title th:if="${pageTitle != null}" th:text="!{pagetitle}"></title>
+
+
+    <!--css-->
+    <!--모든 플랫폼 공통스타일-->
+    <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
+    <!--동적으로 필요한 페이지만 css 추가(common)-->
+    <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCommonCss}"
+          th:href="/common/css/{file}.css(file=${cssFile})}">
+
+    <!--컨트롤러 model 쪽에 데이터를 추가할 수 없을 때 치환방식으로 css 넣어주는 방법 -->
+    <th:block layout:fragment="addCss"></th:block>
+
+    <!--관리자 플랫폼 공통스타일-->
+    <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css}">
+    <!--동적으로 필요한 페이지만 css 추가(admin)-->
+    <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}"
+          th:href="/admin/css/{file}.css(file=${cssFile})}">
+
+
+    <!--js-->
+    <!--모든 플랫폼 공통 자바스크립트 파일-->
+    <script th:src="@{/common/js/common.js}"></script>
+
+    <!--추가적인 공통 자바스크립트 파일-->
+    <script th:each = "jsFile : ${addCommonScript}"
+            th:src="@{/common/js/{file}.js(file=${jsFile})}"></script>
+
+    <!--관리자 플랫폼 공통 자바스크립트 파일-->
+    <script th:src="@{/admin/js/common.js}"></script>
+    <!--관리자 추가 자바스크립트 파일-->
+    <script th:each="jsFile : ${addScript}"
+            th:src="@{/admin/js/{file}.js(file=${jsFile})}"></script>
+    <!--컨트롤러 model쪽에 데이터를 추가할 수 없을 때 치환방식으로 js 넣어주는 방법 -->
+    <th:block layout:fragment="addScript"></th:block>
+
+
+
+</head>
+<body>
+<!--헤더와 푸터 가져오기(아래 부분에 교체)-->
+    <header th:replace:="~{admin/outlines/header::common}"></header>
+
+<!--교체되는 본문 부분-->
+    <main layout:fragment="content"></main>
+
+<!--헤더와 푸터 가져오기(아래 부분에 교체)-->
+    <footer th:replace="~{admin/outlines/footer::common}"></footer>
+</body>
+</html>

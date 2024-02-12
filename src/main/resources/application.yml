@@ -1,0 +1,60 @@
+server:
+  port: 3000
+
+spring:
+  profiles:
+    active: dev
+
+  #파일 업로드 용량 설정
+  servlet:
+    multipart:
+      maxFileSize: 20MB
+      maxRequestSize: 60MB
+
+  #데이터베이스 설정
+  datasource:
+    driverClassName: oracle.jdbc.driver.OracleDriver
+    url: jdbc:oracle:thin:@localhost:1521:orcl
+    username: PROJECT #스키마명
+    password: _aA123456
+
+  #JPA 설정
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true #JPA가 실행하는 SQL을 콘솔에 출력
+        format_sql: true #JPA가 실행하는 SQL을 가독성 있게 출력 ..?
+        use_sql_comments: true #JPA가 실행하는 SQL에 주석추가
+        dialect: org.hibernate.dialect.OracleDialect #JPA DB언어 오라클로 설정
+    hibernate:
+      ddlAuto: create #JPA가 데이터베이스 생성
+
+  #타임리프 설정
+  thymeleaf:
+    cache: false  #타임리프 템플릿 변경시마다 애플리케이션을 다시 시작해야함(템플릿 변경사항 즉시 확인가능)
+    prefix: file:src/main/resources/templates/ #타임리프 기본 경로 설정
+
+  #정적 자원 설정(CSS, JS, 이미지 등..)
+  web:
+    resources:
+      staticLocations: file:src/main/resources/static/ #정적자원(CSS/JS) 경로설정
+
+  #라이브 리로드 설정
+  devtools:
+    livereload:
+      enable: true
+
+#로거 설정
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql:  trace #로깅수준 설정 - SQL의 모든 세부정보 출력
+
+#파일 업로드 경로 설정
+file:
+  upload:
+    path: C:/uploads/
+    url: /uploads/

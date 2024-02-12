@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<!--xmlns:layout...: 타임리프는 내용치환을 지원하지 않으므로 내용치환을 위해 입력한 네임스페이스-->
+
+<html xmlns:th="http://www.thymleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+    <!--공통으로 적용할 css/js 가져오기 -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <!--템플릿 별로 적용할 CSS 가져오기 (배열을 통해) -->
+    <link rel="stylesheet" type="text/css"
+          th:each="path : ${addCss}" th:href="@{/css/{path}.css(path=${path}}">
+
+    <th:block layout:fragment="addCss"></th:block>
+
+    <script th:src="@{/js/common.js}"></script>
+    <script th:each="path : ${addScript}" th:src="@{/js/{path}.js(path=${path}}"></script>
+    <th:block layout:fragment="addScript"></th:block>
+
+</head>
+
+
+<body>
+    <header th:replace="~{outlines/header::common}"></header>
+<!--바뀌는 부분만 내용치환 -->
+        <main layout:fragment="content"></main>
+    <footer th:replace="~{outlines/footer::common}"></footer>
+</body>
+</html>
