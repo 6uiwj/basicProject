@@ -1,0 +1,14 @@
+<!--모든 에러페이지가 다 공유할 공통적인 내용 정의-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--치환되는 부분-->
+    <th:block th:fragment="common">
+    <!-- 공통되는 부분만 출력-->
+        <h1> <!--상태코드 & 메서드 & URL -->
+            <th:block th: text="${status}"></th:block>
+            <th:block th:if="${method != null}" th:text="${method}"></th:block>
+            <th:block th:text="${path}"></th:block>
+        </h1>
+        <div th:text="${message"></div>
+    </th:block>
+</html>

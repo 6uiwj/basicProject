@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<h1>흠..없는페이지군요?</h1>
-<h1 th:text="${status}"></h1>
-<h2 th:text="${path}"></h2>
-<h2 th:text="${message}"></h2>
-<h2 th:text="${timestamp"></h2>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <!-- _content 파일을 불러올 것임 -->
+    <th:block th:replace="~{error/_content::common}"></th:block>
+</main>
+
 </html>
