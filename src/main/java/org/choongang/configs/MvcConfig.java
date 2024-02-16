@@ -1,13 +1,28 @@
 package org.choongang.configs;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
+@EnableConfigurationProperties(FileProeprties.class) //주입
 public class MvcConfig implements WebMvcConfigurer {
+    @Autowired
+    private FileProeprties fileProperties;
+
+
+    //정적 업로드 경로
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler(fileProperties.getUrl() + "**")
+                .addResourceLocations("file:///" + fileProperties.getPath());//현재 경로를 포함한 하위경로
+    }
+
 
     //메시지 번들 연결해주기
     @Bean
