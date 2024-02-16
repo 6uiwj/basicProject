@@ -1,11 +1,5 @@
 package org.choongang.commons.rests;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
-import org.springframework.http.HttpStatus;
-
 //JSONData의 형식을 고정
 
 /** 성공시 데이터는 많을 것임
@@ -21,8 +15,6 @@ public class JSONData<T> {
 
     private HttpStatus status = HttpStatus.OK; //상태코드 가져오기
     private boolean success = true; //성공여부
-
-    @NonNull
     private T data; //성공시 데이터
     private String message; //실패 시 메시지
 
