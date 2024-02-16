@@ -1,5 +1,10 @@
 package org.choongang.restcontrollers;
 
+import org.choongang.commons.exceptions.CommonException;
+import org.choongang.commons.rests.JSONData;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 //레스트방식의 공통 에러처리

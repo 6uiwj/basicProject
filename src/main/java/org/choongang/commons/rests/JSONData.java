@@ -2,6 +2,11 @@ package org.choongang.commons.rests;
 
 //JSONData의 형식을 고정
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.http.HttpStatus;
+
 /** 성공시 데이터는 많을 것임
  * 이런 부분들은 setter를 통해 직접 하기보단
  * 객체를 만들 때 직접 바로 할 수 있게 생성자 매개변수를 추가,
