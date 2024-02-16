@@ -1,1 +1,10 @@
-흠...금지된 페이지군요?
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <!-- _content 파일을 불러올 것임 -->
+    <th:block th:replace="~{error/_content::common}"></th:block>
+</main>
+
+</html>
