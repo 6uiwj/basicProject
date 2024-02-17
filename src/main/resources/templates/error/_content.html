@@ -6,9 +6,9 @@
     <!-- 공통되는 부분만 출력-->
         <h1> <!--상태코드 & 메서드 & URL -->
             <th:block th:text="${status}"></th:block>
-            <th:block th:if="${method != null}" th:text="${method}"></th:block>
-            <th:block th:text="${path}"></th:block>
+            <!--<th:block th:if="${method != null}" th:text="${method}"></th:block>
+            <th:block th:text="${path}"></th:block>-->
         </h1>
-        <div th:text="${message"></div>
+        <div th:text="${message}"></div>
     </th:block>
 </html>
