@@ -1,4 +1,4 @@
-package org.choongang.entities;
+package org.choongang.commons.entities;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.EntityListeners;
@@ -12,7 +12,8 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import java.time.LocalDateTime;
 
 //공통으로 사용할 속성
-@Getter @Setter
+@Getter
+@Setter
 @MappedSuperclass //JPA에서 엔티티로 사용 될 자식클래스의 부모클래스로 작용
 @EntityListeners(AuditingEntityListener.class) //엔티티의 변경사항 감지(생성일자, 수정일자 등) -> 설정활성화 필요
 public abstract class Base {
