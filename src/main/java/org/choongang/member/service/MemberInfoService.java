@@ -1,0 +1,35 @@
+package org.choongang.member.service;
+
+import lombok.RequiredArgsConstructor;
+import org.choongang.member.entities.Member;
+import org.choongang.member.repositories.MemberRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+//UserDetailsService : 회원정보 조회 - 스프링 시큐리티 내에서 사용
+//→MemberInfoService를 구현체로 만들 것임
+//스프링 시큐리티에서 interface로 정의해줬으믈 우리는 구현체를 만들고 반환값만 정해주면 됨
+@Service
+@RequiredArgsConstructor
+public class MemberInfoService implements UserDetailsService {
+
+    private final MemberRepository memberRepository;
+
+    //회원 인증, 권한 체크 시 회원정보 조회할 때 사용
+    //username은 아이디 또는 이메일(우선순위)
+    //이메일이 있으면 그것을 쓰고, 이메일이 없으면 아이디로 조회(이를 한번에 다 하기 위해 optional을 씀)
+
+    /**
+     * 이메일로 조회하고, 없으면 아이디로 조회한 후, 없으면 예외를 던짐
+     */
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+
+        Member member = memberRepository.findByEmail(username)
+                .orElseGet(() -> memberRepository.findByUserId(username)
+                        .orElseThrow(MemberNotFoundException::new));
+
+        return null;
+    }
+}
