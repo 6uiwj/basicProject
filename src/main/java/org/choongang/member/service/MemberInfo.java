@@ -5,6 +5,7 @@ import lombok.Data;
 import org.choongang.member.entities.Member;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.StringUtils;
 
 import java.util.Collection;
 //스프링 시큐리티에서 이미 구현되어 있으므로 값만 넣어주면 됨
@@ -38,7 +39,8 @@ public class MemberInfo implements UserDetails {
     //ID - 로그인시 이용
     @Override
     public String getUsername() {
-        return null;
+        //아이디 또는 이메일 둘 중 어느 것으로 해도 로그인이 가능하도록 - 이메일 먼저 우선순위로 체크
+        return StringUtils.hasText(email) ? email: userId;
     }
 
     //계정이 만료되지 않은 상태인가?
