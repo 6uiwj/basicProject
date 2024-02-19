@@ -28,8 +28,16 @@ public class MemberInfoService implements UserDetailsService {
 
         Member member = memberRepository.findByEmail(username)
                 .orElseGet(() -> memberRepository.findByUserId(username)
-                        .orElseThrow(MemberNotFoundException::new));
+                        .orElseThrow(() -> new UsernameNotFoundException(username)));
 
-        return null;
+
+
+        return MemberInfo.builder()
+                .email(member.getEmail())
+                .userId(member.getUserId())
+                .password(member.getPassword())
+                .member(member)  //추가적인 부분은 member에서 직접 조회
+                .build();
     }
+
 }
