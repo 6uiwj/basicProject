@@ -16,7 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/member")
 @RequiredArgsConstructor //자동의존주입을 위해
 public class MemberController implements ExceptionProcessor {
+
     private final Utils utils; //디바이스별 경로 설정을 위해
+    private final JoinValidator joinValidator;
+
 
     //get방식으로 접속하면 회원가입 양식이 나오도록
     @GetMapping("/join") //RequestJoin
@@ -31,6 +34,10 @@ public class MemberController implements ExceptionProcessor {
     //검증 필요 @Valid
     @PostMapping("/join")
     public String joinPs(@Valid RequestJoin form, Errors  errors) {
+
+        //2차검증
+        joinValidator.validate(form, errors);
+
         //회원가입 성공시 로그인페이지로 이동
         //에러가 발생하면 errors가 참 -> 다시 회원가입 템플릿을 보여주고 에러메시지 출력
         if(errors.hasErrors()) {
