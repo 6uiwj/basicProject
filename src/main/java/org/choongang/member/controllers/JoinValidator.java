@@ -16,6 +16,7 @@ import org.springframework.validation.Validator;
 public class JoinValidator implements Validator {
     
     private final MemberRepository memberRepository;
+
     /**
      * 검증 대상을 한정하는 메서드
      * 매개변수로 받은 class가
@@ -46,7 +47,7 @@ public class JoinValidator implements Validator {
         //1. 이메일, 아이디 중복 여부 체크 - 레포지토리 의존성 추가,
         // 레포지토리에 존재 여부를 조회할 수 있는 메서드추가
         //이메일이 있고, 이메일이 이미 가입되어 있는가?
-        if(StringUtils.hasText(email)&&memberRepository.existsByEmail(email)){ //참이 되면 안됨
+        if(StringUtils.hasText(email) && memberRepository.existsByEmail(email)){ //참이 되면 안됨
                 errors.rejectValue("email", "Duplicated");
         }
 
@@ -55,10 +56,16 @@ public class JoinValidator implements Validator {
         }
 
 
-        //2. 비밀번호 복잡성 체크 - 대소문자 1개 각각 포함, 숫자 1개 이상 포함, 특수문자 1개 이상 포함
+        //2. 비밀번호 복잡성 체크 - 대소문자 1개 각각 포함, 숫자 1개 이상 포함, 특수문자 1개 이상 포함 -> 비밀번호 이외의 곳에서도 쓰일 수 있음
 
 
         //3. 비밀번호, 비밀번호 확인 일치 여부 체크
+        /**
+         * 비밀번호와 비밀번호 확인이 둘 다 존재하고, 두 개가 서로 일치하지 않을 때
+         */
+        if (StringUtils.hasText(password) && StringUtils.hasText(confirmPassword) && !password.equals(confirmPassword)) {
+            errors.rejectValue("confirmPassword", "Mismatch.password");
+        }
 
     }
 }
