@@ -3,6 +3,7 @@ package org.choongang.member.controllers;
 import lombok.RequiredArgsConstructor;
 import org.choongang.member.repositories.MemberRepository;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
@@ -42,9 +43,22 @@ public class JoinValidator implements Validator {
         String password = form.getPassword();
         String confirmPassword = form.getConfirmPassword();
 
-        //1. 이메일, 아이디 중복 여부 체크 - 리포지토리 의존성 추가, 
+        //1. 이메일, 아이디 중복 여부 체크 - 레포지토리 의존성 추가,
         // 레포지토리에 존재 여부를 조회할 수 있는 메서드추가
-        
+        //이메일이 있고, 이메일이 이미 가입되어 있는가?
+        if(StringUtils.hasText(email)&&memberRepository.existsByEmail(email)){ //참이 되면 안됨
+                errors.rejectValue("email", "Duplicated");
+        }
+
+        if (StringUtils.hasText(userId) && memberRepository.existsByUserId(userId)) {
+            errors.rejectValue("userId", "Duplicated");
+        }
+
+
+        //2. 비밀번호 복잡성 체크 - 대소문자 1개 각각 포함, 숫자 1개 이상 포함, 특수문자 1개 이상 포함
+
+
+        //3. 비밀번호, 비밀번호 확인 일치 여부 체크
 
     }
 }
