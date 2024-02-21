@@ -1,6 +1,7 @@
 package org.choongang.member.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.choongang.commons.validators.PasswordValidator;
 import org.choongang.member.repositories.MemberRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -13,7 +14,7 @@ import org.springframework.validation.Validator;
  */
 @Component
 @RequiredArgsConstructor
-public class JoinValidator implements Validator {
+public class JoinValidator implements Validator, PasswordValidator {
     
     private final MemberRepository memberRepository;
 
@@ -57,6 +58,17 @@ public class JoinValidator implements Validator {
 
 
         //2. 비밀번호 복잡성 체크 - 대소문자 1개 각각 포함, 숫자 1개 이상 포함, 특수문자 1개 이상 포함 -> 비밀번호 이외의 곳에서도 쓰일 수 있음
+        //PasswordValidator에 비밀번호 조합 메서드 만든 후 가져오기
+        /**
+         * 비밀번호가 존재하고, 대소문자,숫자,특수문자 체크에서 하나라도 통과 실패하면
+         */
+        if(StringUtils.hasText(password) &&
+                (!alphaCheck(password, true) ||
+                !numberCheck(password) ||
+                !specialCharsCheck(password))) {
+            errors.rejectValue("password", "Complexity");
+        }
+
 
 
         //3. 비밀번호, 비밀번호 확인 일치 여부 체크
