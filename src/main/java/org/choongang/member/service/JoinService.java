@@ -40,6 +40,15 @@ public class JoinService {
 
         //두개의 클래스를 비교해보고 데이터 치환
         Member member = new ModelMapper().map(form, Member.class);
+        /**
+         * <ModelMapper가 오류 뜰 때>
+         *     Member member = new Member();
+         *     member.setEmail(form.getEmail());
+         *     member.setName(form.getName());
+         *     member.setPassword(hash);
+         *     member.setUserId(form.getUserId());
+         * */
+
         //비밀번호는 해시화한 형태로 바뀌어 있으므로 직접 넣어줌
         member.setPassword(hash);
         //DB에저장
