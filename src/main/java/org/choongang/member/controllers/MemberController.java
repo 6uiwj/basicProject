@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.choongang.commons.ExceptionProcessor;
 import org.choongang.commons.Utils;
+import org.choongang.member.service.JoinService;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MemberController implements ExceptionProcessor {
 
     private final Utils utils; //디바이스별 경로 설정을 위해
-    private final JoinValidator joinValidator;
-
+    private final JoinService joinService;
 
     //get방식으로 접속하면 회원가입 양식이 나오도록
     @GetMapping("/join") //RequestJoin
@@ -36,7 +36,8 @@ public class MemberController implements ExceptionProcessor {
     public String joinPs(@Valid RequestJoin form, Errors  errors) {
 
         //2차검증
-        joinValidator.validate(form, errors);
+        //joinValidator.validate(form, errors);
+        joinService.process(form,errors);
 
         //회원가입 성공시 로그인페이지로 이동
         //에러가 발생하면 errors가 참 -> 다시 회원가입 템플릿을 보여주고 에러메시지 출력
