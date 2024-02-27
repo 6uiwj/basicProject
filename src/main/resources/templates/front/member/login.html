@@ -1,10 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf.layout"
+      layout:decorate="~{front/layouts/main}">
+<main layout:fragment="content">
+    <h1 th:text="#{로그인}"></h1>
 
-</body>
+    <form name="frmLogin" method="post" th:action = "@{/member/login}"
+              autocomplete="off">
+            <dl>
+                <dt th:text="#{아이디}"></dt>
+                <dd>
+                    <input type="text" name="username">
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text="#{비밀번호}"></dt>
+                <dd>
+                    <input type="password" name="password">
+                </dd>
+            </dl>
+            <button type="submit" th:text="#{로그인}"></button>
+        </form>
+</main>
 </html>
