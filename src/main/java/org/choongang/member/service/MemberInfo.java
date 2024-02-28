@@ -33,7 +33,7 @@ public class MemberInfo implements UserDetails {
     //비밀번호 - 로그인시 이용
     @Override
     public String getPassword() {
-        return null;
+        return password;
     }
 
     //ID - 로그인시 이용

@@ -10,16 +10,25 @@
             <dl>
                 <dt th:text="#{아이디}"></dt>
                 <dd>
-                    <input type="text" name="username">
+                    <!--검증 실패해도 이전에 입력한 아이디가 그대로 유지되도록-->
+                    <input type="text" name="username" th:value="${session.username}">
+                    <!--LoginSuccessHanlder에서 정의한 에러메시지 출력-->
+                    <div class="error" th:if="${session.NotBlank_username != null}"
+                         th:text="${session.NotBlank_username}"></div>
                 </dd>
             </dl>
             <dl>
                 <dt th:text="#{비밀번호}"></dt>
                 <dd>
                     <input type="password" name="password">
+                    <div class="error" th:if="${session.NotBlank_password != null}"
+                         th:text="${session.NotBlank_password}"></div>
                 </dd>
             </dl>
             <button type="submit" th:text="#{로그인}"></button>
+            <!--글로벌 에러 메시지가 있으면 출력-->
+            <div class="error" th:if="${session.Global_error != null}"
+                 th:text="${session.Global_error}"></div>
         </form>
 </main>
 </html>
