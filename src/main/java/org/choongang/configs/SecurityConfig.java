@@ -14,6 +14,12 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        /* 인증설정 S - 로그인 */
+        http.formLogin(f -> { //로그인 설정 : formLogin 인터페이스 이용(DSL 형태. 람다식..)
+           f.loginPage("/member/login");//로그인 처리 페이지
+        });
+        /* 인증설정 E - 로그인 */
+
         return http.build(); //기존 시큐리티 로그인 페이지 무력화
     }
 
