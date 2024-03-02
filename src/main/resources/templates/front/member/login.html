@@ -7,6 +7,9 @@
 
     <form name="frmLogin" method="post" th:action = "@{/member/login}"
               autocomplete="off">
+        <!--로그인 성공 후 이동할 주소를 hidden 값으로 넘기기(직전 이용했던 서비스)-->
+        <input type="hidden" name="redirectURL" th:if="${param.redirectURL != null}"
+               th:value="${param.redirectURL}">
             <dl>
                 <dt th:text="#{아이디}"></dt>
                 <dd>

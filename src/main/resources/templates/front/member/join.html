@@ -3,63 +3,67 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{front/layouts/main}">
 <main layout:fragment="content">
-    <h1 th:text="#{회원가입}"></h1>
-<!--th:object로 커맨드객체 연동(th:field로 값을 받아오기 위해)-->
-    <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
-        <!--에러를 error와 global 두개로 묶을 거임-->
-        <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
+    <h1 th:text="#{회원가입}" class="joinPage"></h1>
+    <fieldset>
+        <!--th:object로 커맨드객체 연동(th:field로 값을 받아오기 위해)-->
+        <form name="frmJoin" method="post" th:action="@{/member/join}" autocomplete="off" th:object="${requestJoin}">
+            <!--에러를 error와 global 두개로 묶을 거임-->
+            <div class="error global" th:each="err : ${#fields.globalErrors()}" th:text="${err}"></div>
 
-        <dl>
-            <dt th:text = "#{이메일}"></dt>
-            <dd>
-                <!--requestJoin 커맨드객체에서 email연결-->
-                <input type="text" name="email" th:field="*{email}">
-                <!--입력 필드에 대한 오류 메시지를 가져오는 역할-->
-                <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
-            </dd>
-        </dl>
-        <dl>
-            <dt th:text = "#{아이디}"></dt>
-            <dd>
-                <!--                requestJoin 커맨드객체에서 email연결-->
-                <input type="text" name="userId" th:field="*{userId}">
-                <div class="error" th:each="err : ${#fields.errors('userId')}" th:text="${err}"></div>
-            </dd>
-        </dl>
-        <dl>
-            <dt th:text = "#{비밀번호}"></dt>
-            <dd>
-                <!--                requestJoin 커맨드객체에서 email연결-->
-                <input type="password" name="password" th:field="*{password}">
-                <div class="error" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
-            </dd>
-        </dl>
-        <dl>
-            <dt th:text = "#{비밀번호_확인}"></dt>
-            <dd>
-                <!--                requestJoin 커맨드객체에서 email연결-->
-                <input type="password" name="confirmPassword" th:field="*{confirmPassword}">
-                <div class="error" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></div>
-            </dd>
-        </dl>
-        <dl>
-            <dt th:text = "#{회원명}"></dt>
-            <dd>
-                <!--                requestJoin 커맨드객체에서 email연결-->
-                <input type="text" name="name" th:field="*{name}">
-                <div class="error" th:each="err : ${#fields.errors('name')}" th:text="${err}"></div>
-            </dd>
-        </dl>
+            <dl>
+                <dt> <span th:text = "#{이메일}"></span><span class="required">*</span>
+                </dt>
+                <dd>
+                    <!--requestJoin 커맨드객체에서 email연결-->
+                    <input type="text" name="email" th:field="*{email}">
+                    <!--입력 필드에 대한 오류 메시지를 가져오는 역할-->
+                    <div class="error" th:each="err : ${#fields.errors('email')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt> <span th:text = "#{아이디}"></span><span class="required">*</span>
+                </dt>
+                <dd>
+                    <!--                requestJoin 커맨드객체에서 email연결-->
+                    <input type="text" name="userId" th:field="*{userId}">
+                    <div class="error" th:each="err : ${#fields.errors('userId')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt> <span th:text = "#{비밀번호}"></span><span class="required">*</span></dt>
+                <dd>
+                    <!--                requestJoin 커맨드객체에서 email연결-->
+                    <input type="password" name="password" th:field="*{password}">
+                    <div class="error" th:each="err : ${#fields.errors('password')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt><span th:text = "#{비밀번호_확인}"></span><span class="required">*</span></dt>
+                <dd>
+                    <!--                requestJoin 커맨드객체에서 email연결-->
+                    <input type="password" name="confirmPassword" th:field="*{confirmPassword}">
+                    <div class="error" th:each="err : ${#fields.errors('confirmPassword')}" th:text="${err}"></div>
+                </dd>
+            </dl>
+            <dl>
+                <dt th:text = "#{회원명}"></dt>
+                <dd>
+                    <!--                requestJoin 커맨드객체에서 email연결-->
+                    <input type="text" name="name" th:field="*{name}">
+                    <div class="error" th:each="err : ${#fields.errors('name')}" th:text="${err}"></div>
+                </dd>
+            </dl>
 
-        <div th:text="#{회원가입_약관}"></div>
-        <div class="terms">약관...</div>
-        <div class="terms_agree">
-            <input type="checkbox" name="agree" value="true" id="agree">
-            <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>
+            <div th:text="#{회원가입_약관}"></div>
+            <div class="terms">약관...</div>
+            <div class="terms_agree">
+                <input type="checkbox" name="agree" value="true" id="agree">
+                <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>
 
-            <div class="error" th:each = "err : ${#fields.errors('agree')}" th:text="${err}"></div>
-        </div>
-        <button type="submit" th:text="#{가입하기}"></button>
-    </form>
+                <div class="error" th:each = "err : ${#fields.errors('agree')}" th:text="${err}"></div>
+            </div>
+            <button type="submit" th:text="#{가입하기}"></button>
+        </form>
+    </fieldset>
 </main>
 </html>
