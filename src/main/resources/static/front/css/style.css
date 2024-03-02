@@ -1,0 +1,47 @@
+front > css
+<style.css>
+
+dd {
+    display: inline-block;
+    height: 35px;
+
+}
+
+dt {
+    display: inline-block;
+    width: 120px;
+    height: 35px;
+    vertical-align: middle;
+    color: #454545;
+
+
+}
+[type=text], [type=password] {
+    border: 0;
+    border-bottom: 1px solid #dbdbdb;
+    width: 200px;
+    font-size:15px;
+    padding-bottom:5px;
+
+}
+
+input[type=text]:focus, input[type=password]:focus {
+    outline: none; /* 포커스시 기본적으로 표시되는 외곽선 제거 */
+    border-bottom: 1px solid #dbdbdb; /* 포커스시 하단에 밑줄 추가 */
+}
+
+fieldset {
+    width: 600px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding:100px;
+    border-radius: 10px;
+    border: 1px solid #dbdbdb;
+}
+
+.joinPage {
+text-align: center;
+color: #454545;
+}
+.required {
+color: red;}

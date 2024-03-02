@@ -24,8 +24,6 @@ public class MemberController implements ExceptionProcessor {
     //get방식으로 접속하면 회원가입 양식이 나오도록
     @GetMapping("/join") //RequestJoin
     public String join(@ModelAttribute RequestJoin form) {
-
-
         //템플릿 연결
         return utils.tpl("member/join");
     }
