@@ -27,7 +27,7 @@ spring:
         use_sql_comments: true #JPA가 실행하는 SQL에 주석추가
         dialect: org.hibernate.dialect.OracleDialect #JPA DB언어 오라클로 설정
     hibernate:
-      ddlAuto: create #JPA가 데이터베이스 생성
+      ddlAuto: update #JPA가 데이터베이스 생성
 
   #타임리프 설정
   thymeleaf:
