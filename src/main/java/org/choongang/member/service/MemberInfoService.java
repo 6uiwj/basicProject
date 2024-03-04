@@ -1,12 +1,17 @@
 package org.choongang.member.service;
 
 import lombok.RequiredArgsConstructor;
+import org.choongang.member.entities.Authorities;
 import org.choongang.member.entities.Member;
 import org.choongang.member.repositories.MemberRepository;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+
 //UserDetailsService : 회원정보 조회 - 스프링 시큐리티 내에서 사용
 //→MemberInfoService를 구현체로 만들 것임
 //스프링 시큐리티에서 interface로 정의해줬으믈 우리는 구현체를 만들고 반환값만 정해주면 됨
@@ -30,7 +35,14 @@ public class MemberInfoService implements UserDetailsService {
                 .orElseGet(() -> memberRepository.findByUserId(username)
                         .orElseThrow(() -> new UsernameNotFoundException(username)));
 
-
+        //권한 가져오기
+        List<Authorities> tmp = member.getAuthorities();
+        if(tmp != null) {
+            //DB에서 가져온 상수 데이터를 스트림을 이용해 리스트 형태로 가공
+            List<SimpleGrantedAuthority> authorities = tmp.stream()
+                    .map(s -> new SimpleGrantedAuthority(s.getAuthority().name()))
+                    .toList(); //가져왔던 데이터에서 상수만 뽑아오고 문자로 반환
+        }
 
         return MemberInfo.builder()
                 .email(member.getEmail())

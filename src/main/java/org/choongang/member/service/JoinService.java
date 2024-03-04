@@ -1,20 +1,26 @@
 package org.choongang.member.service;
 
 import lombok.RequiredArgsConstructor;
+import org.choongang.member.Authority;
 import org.choongang.member.controllers.JoinValidator;
 import org.choongang.member.controllers.RequestJoin;
+import org.choongang.member.entities.Authorities;
 import org.choongang.member.entities.Member;
+import org.choongang.member.repositories.AuthoritiesRepository;
 import org.choongang.member.repositories.MemberRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 
 @Service
 @RequiredArgsConstructor //의존성이 필요하니까
+@Transactional
 public class JoinService {
 
     private final MemberRepository memberRepository; //DB작업
+    private final AuthoritiesRepository authoritiesRepository; //회원가입시 기본 권한 부여 위해
     private final JoinValidator joinValidator; //검증
     private final PasswordEncoder encoder; //비밀번호 해시화
 
@@ -51,8 +57,14 @@ public class JoinService {
 
         //비밀번호는 해시화한 형태로 바뀌어 있으므로 직접 넣어줌
         member.setPassword(hash);
-        //DB에저장
+        //DB에저장 (회원가입 완료)
         process(member);
+
+        //회원 가입 시 일반 사용자 권한 부여(USER)
+        Authorities authorities = new Authorities();
+        authorities.setMember(member);
+        authorities.setAuthority(Authority.USER); //USER 권한 부여
+        authoritiesRepository.saveAndFlush(authorities);
     }
 
     //회원가입 처리 - 엔티티를 가지고 DB에 저장
