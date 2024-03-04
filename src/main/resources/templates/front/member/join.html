@@ -57,7 +57,9 @@
             <div th:text="#{회원가입_약관}"></div>
             <div class="terms">약관...</div>
             <div class="terms_agree">
-                <input type="checkbox" name="agree" value="true" id="agree">
+                <!--th:field="*{agree}를 넣으면 약관동의 체크가 해제되지 않고 유지됨
+                        -> form field와 모델 객체의 agree 속성을 연결 -->
+                <input type="checkbox" name="agree" value="true" id="agree" th:field="*{agree}">
                 <label for="agree" th:text="#{회원가입_약관에_동의합니다.}"></label>
 
                 <div class="error" th:each = "err : ${#fields.errors('agree')}" th:text="${err}"></div>

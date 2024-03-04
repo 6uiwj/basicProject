@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 //스프링 시큐리티 설정 파일(스프링 시큐리티에 관한 설정은 전부 여기에 해줄 것임 )
 @Configuration
@@ -16,7 +17,8 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        /* 인증설정 S - 로그인 */
+        /* 인증설정 S - 로그인, 로그아웃 */
+
         http.formLogin(f -> { //로그인 설정 : formLogin 인터페이스 이용(DSL 형태. 람다식..)
            f.loginPage("/member/login")//로그인 처리 페이지 - 바뀔 수 있는 부분 이름 명시해서 설정
                    .usernameParameter("username") //login 템플릿의 아이디 name 값
@@ -25,7 +27,14 @@ public class SecurityConfig {
                    .failureHandler(new LoginFailureHandler());
 
         });
-        /* 인증설정 E - 로그인 */
+        //로그아웃으로 설정할 주소를 설정하고, 로그아웃 후 이동할 주소 설정 (혹은 추가기능 필요 시 LogoutHandler 이용 )
+        http.logout(c -> {
+            c.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+                    .logoutSuccessUrl("/member/login");//로그아웃 이후 이동할 페이지(로그인 페이지로 이동)
+
+        });
+
+        /* 인증설정 E - 로그인, 로그아웃 */
 
         return http.build(); //기존 시큐리티 로그인 페이지 무력화
     }

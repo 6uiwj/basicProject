@@ -22,6 +22,7 @@ public class MemberInfo implements UserDetails {
 
     //Collection -> set, list...등이 될 수 있음
     //아래의 getAuthorities에서 받아올 값 설정
+    //권한을 바꿔서 여기에 넣어주면 내부에서 알아서 권한 체크가 가능
     private Collection<? extends GrantedAuthority> authorities;
 
     //특정 권한에 대한 인가(괸리자 or 멤버 or ...)
