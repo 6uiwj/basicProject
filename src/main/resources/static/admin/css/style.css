@@ -33,7 +33,7 @@ main > aside > a + a { border-top: 1px solid #61729e; }
 main > aside > a i { color: #dddee4; font-size: 1.385rem; }
 /*메뉴가 선택되었을 때 강조 */
 main > aside > a.on, main > aside > a:hover { background: #3c4e7a; font-weight: 500; }
-main > aside > a.on, main > aside > a:hover:after { content: ''; display: block;
+main > aside > a.on: after, main > aside > a:hover:after { content: ''; display: block;
  width: 8px; height: 100%; right: 0; top: 0; background: #00d0d7; position: absolute; }
 
 nav.submenus { box-shadow: 1px 1px 5px #cdced5; height: 60px; background: #fff;
@@ -43,3 +43,7 @@ nav.submenus a { height: 60px; line-height: 60px; padding: 0 40px; font-size: 1.
   color: #222; }
 nav.submenus a.on { background: #596b99; color: #fff; font-weight: 500; }
 /* 내용 영역  E */
+
+/* 제목 공통 */
+h1 { margin: 0; padding: 0 0 20px 10px; line-height: 1; font-size: 2rem; border-bottom: 2px solid #222;
+    margin-bottom: 30px; }
