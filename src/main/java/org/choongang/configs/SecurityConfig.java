@@ -50,7 +50,8 @@ public class SecurityConfig {
         http.authorizeHttpRequests(c -> {
             //회원전용
             c.requestMatchers("/mypage/**").authenticated() //마이페이지를 포함한 모든 하위 경로
-                    .requestMatchers("/admin/**").hasAnyAuthority("ADMIN", "MANAGER") //관리자,부관리자만 admin페이지 접근 가능
+                    //.requestMatchers("/admin/**")
+                   //.hasAnyAuthority("ADMIN", "MANAGER") //관리자,부관리자만 admin페이지 접근 가능
                     .anyRequest().permitAll(); //그 이외의 페이지는 모두 접근 가능
         });
 
