@@ -2,6 +2,7 @@ package org.choongang.member.repositories;
 
 import org.choongang.member.entities.Member;
 import org.choongang.member.entities.QMember;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 
@@ -17,7 +18,10 @@ public interface MemberRepository extends JpaRepository<Member, Long>, QuerydslP
      * null이 아닌 Optional.empty()를 반환하여
      * NullPointerException 등의 예외를 방지할 수 있다.
      */
+    @EntityGraph(attributePaths = "authorities")
     Optional<Member> findByEmail(String email);
+
+    @EntityGraph(attributePaths = "authorities")
     Optional<Member> findByUserId(String userId);
 
 
