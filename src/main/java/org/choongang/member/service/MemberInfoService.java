@@ -35,11 +35,12 @@ public class MemberInfoService implements UserDetailsService {
                 .orElseGet(() -> memberRepository.findByUserId(username)
                         .orElseThrow(() -> new UsernameNotFoundException(username)));
 
+        List<SimpleGrantedAuthority> authorities = null;
         //권한 가져오기
-        List<Authorities> tmp = member.getAuthorities();
+        List<Authorities> tmp = member.getAuthorities(); //권한 테이블 값 가져옴 -> enum상수이므로 이걸 grantedAuthority 형태로 바꿔야 함
         if(tmp != null) {
-            //DB에서 가져온 상수 데이터를 스트림을 이용해 리스트 형태로 가공
-            List<SimpleGrantedAuthority> authorities = tmp.stream()
+            //DB에서 가져온 상수 데이터를 스트림을 이용해 문자열 리스트 형태로 가공
+           authorities = tmp.stream()
                     .map(s -> new SimpleGrantedAuthority(s.getAuthority().name()))
                     .toList(); //가져왔던 데이터에서 상수만 뽑아오고 문자로 반환
         }
@@ -49,6 +50,7 @@ public class MemberInfoService implements UserDetailsService {
                 .userId(member.getUserId())
                 .password(member.getPassword())
                 .member(member)  //추가적인 부분은 member에서 직접 조회
+                .authorities(authorities)
                 .build();
     }
 
