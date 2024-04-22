@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th = "http://www.thymeleaf.org">
+<!--aside: 시맨틱태그 - 사이드바 콘텐츠 정의-->
 <aside th:fragment="menus">
     <a th:href="@{/admin/config}" th:classappend="${menuCode} == 'config' ? 'on'">
         <i class="xi-cog"></i> 기본설정
