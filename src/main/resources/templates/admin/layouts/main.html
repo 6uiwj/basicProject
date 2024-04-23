@@ -4,20 +4,24 @@
 
 <head>
     <meta charset="UTF-8">
+    <!--페이지 타이틀 노출-->
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 
 
     <!--css-->
     <!--모든 플랫폼 공통스타일-->
     <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
-    <!--동적으로 필요한 페이지만 css 추가(common)-->
+    <!--동적으로 필요한 페이지만 css 추가(common)
+            경로 : /common/css/파일이름.css-->
+    <!--1. Model 객체에서 ${addCommonCss} 데이터를 가져와서 cssFile에 반복해서 담는다.-->
+    <!--2. ${cssFile}에 담긴 데이터를 경로의 {file}에 대입 -->
     <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCommonCss}"
           th:href="@{/common/css/{file}.css(file=${cssFile})}">
 
     <!--컨트롤러 model 쪽에 데이터를 추가할 수 없을 때 치환방식으로 css 넣어주는 방법 -->
     <th:block layout:fragment="addCss"></th:block>
 
-    <!--관리자 플랫폼 공통스타일-->
+    <!--관리자 플랫폼 공통스타일 css 추가-->
     <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css}">
     <!--동적으로 필요한 페이지만 css 추가(admin)-->
     <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}"

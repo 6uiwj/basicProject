@@ -2,8 +2,10 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <!--subMenu가 존재하면  subMenu를 가져와서 출력 -->
 <nav class="submenus" th:fragment="submenus" th:if="${subMenus != null && !subMenus.isEmpty()}">
+    <!--Menu클래스에서 subMenus라는 이름으로 model에 저장한 menuDetail를 가져온다.
+        이 menuDetail에서 name과 url값을 가져와 url을 링크로 연결하고, name을 텍스트로 출력-->
     <a th:each="menu : ${subMenus}" th:object="${menu}"
        th:href="@{{url}(url=*{url})}" th:text="*{name}"
-       th:classappend="${subMenuCode == menu.code} ? 'on'"></a> <!--두 값이 같으면 클래스에 on 추가-->
+       th:classappend="${subMenuCode == menu.code} ? 'on'"></a> <!--subMenuCode의 값이 menu의 code 값과 같으면 클래스에 on 추가-->
 </nav>
 </html>
