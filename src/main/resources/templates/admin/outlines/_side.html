@@ -2,9 +2,13 @@
 <html xmlns:th = "http://www.thymeleaf.org">
 <!--aside: 시맨틱태그 - 사이드바 콘텐츠 정의-->
 <aside th:fragment="menus">
+    <!--주소: /admin/config
+        menuCode가 'config'이면 클래스에 'on'을 추가-->
     <a th:href="@{/admin/config}" th:classappend="${menuCode} == 'config' ? 'on'">
         <i class="xi-cog"></i> 기본설정
     </a>
+    <!--주소: /admin/member
+    menuCode가 'member'이면 클래스에 'on'을 추가-->
     <a th:href="@{/admin/member}" th:classappend="${menuCode} == 'member' ? 'on'">
         <i class="xi-users"></i> 회원관리
     </a>

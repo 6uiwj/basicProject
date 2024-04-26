@@ -9,7 +9,7 @@
 
 
     <!--css-->
-    <!--모든 플랫폼 공통스타일-->
+    <!--common: 모든 플랫폼 공통스타일-->
     <link rel="stylesheet" type="text/css" th:href="@{/common/css/style.css}">
     <!--동적으로 필요한 페이지만 css 추가(common)
             경로 : /common/css/파일이름.css-->
@@ -21,7 +21,7 @@
     <!--컨트롤러 model 쪽에 데이터를 추가할 수 없을 때 치환방식으로 css 넣어주는 방법 -->
     <th:block layout:fragment="addCss"></th:block>
 
-    <!--관리자 플랫폼 공통스타일 css 추가-->
+    <!--admin: 관리자 플랫폼 공통스타일 css 추가-->
     <link rel="stylesheet" type="text/css" th:href="@{/admin/css/style.css}">
     <!--동적으로 필요한 페이지만 css 추가(admin)-->
     <link rel="stylesheet" type="text/css" th:each="cssFile : ${addCss}"
