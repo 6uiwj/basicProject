@@ -1,16 +1,19 @@
 package org.choongang.admin.menus;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+//따로 객체를 만들지 않고 직접 접근할 수 있도록 정적인 방법으로 가져올 수 있도록
+//주 메뉴코드만 입력하면 그 메뉴에 해당하는 서브메뉴를 가져오도록 설정
+// 주메뉴는 Map, subMenu는 List 이용
 
 public class Menu {
-    //메뉴는 바뀌지 않을 걸....
+    //MeneDtail = 서브메뉴
     private final static Map<String, List<MenuDetail>> menus;
     static {
+        //메뉴는 바뀌지 않으므로 처음 로딩될 때 완성이 되도록 해줌
         menus = new HashMap<>();
-        //주 메뉴 코드 입력(회원) - 서브메뉴 (회원목록, 회원권한 등...) 맵으로 한 이유...- 킷값:주메뉴코드
+
+        //주 메뉴 코드 입력(회원) - 서브메뉴 (회원목록, 회원권한 등...) 맵으로 한 이유...- 킷값:주 메뉴코드
+        //Arrays.asList : 값을 나눠서 입력하면 고정된 크기의  리스트로 바꿔서 반환해 줌(수정 불가)
         menus.put("member", Arrays.asList(
                 new MenuDetail("list", "회원목록", "/admin/member"),
                 new MenuDetail("authority", "회원권한", "/admin/member/authority")
