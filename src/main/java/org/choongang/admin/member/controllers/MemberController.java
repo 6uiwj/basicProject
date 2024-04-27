@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
-
+//클래스이름 중복을 피하기 위해 컨트롤러 이름을 직접 정해줌
 @Controller("adminMemberController")
 @RequestMapping("/admin/member")
-public class MemberController implements ExceptionProcessor {
+public class MemberController implements ExceptionProcessor { //에러페이지 연동(ExceptionProcessor)
         @ModelAttribute("menuCode") //주메뉴코드... 하...^^
         public String getMenuCode() {
             return "member";
