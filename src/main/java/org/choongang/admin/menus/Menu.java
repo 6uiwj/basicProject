@@ -10,14 +10,16 @@ public class Menu {
     private final static Map<String, List<MenuDetail>> menus;
     static {
         //메뉴는 바뀌지 않으므로 처음 로딩될 때 완성이 되도록 해줌
+        //QnA 여기서 왜 HashMap을 사용할까?
         menus = new HashMap<>();
 
+        //QnA 여기서 왜 Map의 값의 데이터를 바로 List형태로 넣지 않고 Arrays.asList를 통해서 넣을까?
         //주 메뉴 코드 입력(회원) - 서브메뉴 (회원목록, 회원권한 등...) 맵으로 한 이유...- 킷값:주 메뉴코드
         //Arrays.asList : 값을 나눠서 입력하면 고정된 크기의  리스트로 바꿔서 반환해 줌(수정 불가)
-        menus.put("member", Arrays.asList(
+        menus.put("member", Arrays.asList( //asList: 서브메뉴
                 new MenuDetail("list", "회원목록", "/admin/member"),
                 new MenuDetail("authority", "회원권한", "/admin/member/authority")
-        ));
+        ) );
         //"board" : 주메뉴 / Arrays...( 보조메뉴)
         menus.put("board", Arrays.asList(
                 new MenuDetail("list", "게시판목록", "/admin/board"),
