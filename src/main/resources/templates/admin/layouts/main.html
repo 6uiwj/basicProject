@@ -53,7 +53,9 @@
 
 <!--교체되는 본문 부분-->
 <main>
+    <!--사이드 메뉴-->
     <aside th:replace="~{admin/outlines/_side::menus}"></aside>
+    <!--서브 메뉴-->
     <section>
         <nav th:replace="~{admin/outlines/_submenu::submenus}"></nav>
         <section layout:fragment="content"></section>
