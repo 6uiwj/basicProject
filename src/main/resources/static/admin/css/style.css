@@ -66,6 +66,8 @@ main > aside > a i { color: #dddee4; font-size: 1.385rem; }
 main > aside > a.on, main > aside > a:hover { background: #3c4e7a; font-weight: 500; }
 
 /* 메뉴가 선택되었을 때, 마우스를 올려놨을 때 사이드메뉴 오른쪽 끝에 하늘색 하이라이팅 */
+/* after: 가상 클래스 선택자 중 자식 요소의 끝에 추가
+    content: :after 혹은 :before의 필수 속성, 내용을 출력하는데 사용(주로 텍스트) */
 main > aside > a.on:after, main > aside > a:hover:after { content: ''; display: block;
  width: 8px; height: 100%; right: 0; top: 0; background: #00d0d7; position: absolute; }
 
