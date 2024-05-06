@@ -1,11 +1,15 @@
 <!DOCTYPE html>
+<!--admin > main > index.html 템플릿 복사해오기-->
 <html xmlns:th="httpL//www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/main}">
 <section layout:fragment="content">
     <h1>기본설정</h1>
     <h2>사이트 설정</h2>
-    [[${subMenus}]]
+    <!--메뉴 등 공통 데이터 유지할 때
+            방법1: ControllerAdvice 이용(데이터가 많을 때)
+            방법2: ModelAttribute(설정만 필요 시(MemberController에서 설정))-->
+    [[${subMenus}]] <!--컨트롤러에서 값이 잘 넘어왔나 확인-->
     관리자 페이지...
 </section>
 </html>
