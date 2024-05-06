@@ -55,7 +55,7 @@
 <main>
     <!--사이드 메뉴-->
     <aside th:replace="~{admin/outlines/_side::menus}"></aside>
-    <!--서브 메뉴-->
+    <!--상단에 서브 메뉴 출력(존재할 때에만 출력)-->
     <section>
         <nav th:replace="~{admin/outlines/_submenu::submenus}"></nav>
         <section layout:fragment="content"></section>

@@ -72,12 +72,13 @@ main > aside > a.on:after, main > aside > a:hover:after { content: ''; display: 
  width: 8px; height: 100%; right: 0; top: 0; background: #00d0d7; position: absolute; }
 
 /*box-shadow: 수평그림자(음수 왼쪽, 양수 오른쪽), 수직그림자(음수 위쪽, 양수 아래쪽), 흐림정도 , 그림자의 크기
-    --> 아래, 오른쪽 방향 그림자 1px씩, 흐림정도 5px */
+    --> 아래, 오른쪽 방향 그림자 2px씩, 흐림정도 5px */
 nav.submenus { box-shadow: 2px 2px 5px #cdced5; height: 60px; background: #fff;
    border-radius: 5px; margin-bottom: 50px; display: flex; align-items: center; }
-
+/* a태그 양쪽 여백 40px line-height를 높이와 동일하게 줘서 글씨를 위아래 가운데 정렬*/
 nav.submenus a { height: 60px; line-height: 60px; padding: 0 40px; font-size: 1.385rem;
   color: #222; }
+  /* 메뉴가 선택되었을 때 css 설정 */
 nav.submenus a.on { background: #596b99; color: #fff; font-weight: 500; }
 /* 내용 영역  E */
 
