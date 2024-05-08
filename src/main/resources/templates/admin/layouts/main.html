@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <!--페이지 타이틀 노출-->
+    <!--페이지 타이틀이 존재한다면 타이틀 노출-->
     <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
 
 
@@ -54,8 +54,10 @@
 <!--교체되는 본문 부분-->
 <main>
     <!--사이드 메뉴-->
+    <!-- _side 템플릿에서 menus fragment참조 -->
     <aside th:replace="~{admin/outlines/_side::menus}"></aside>
     <!--상단에 서브 메뉴 출력(존재할 때에만 출력)-->
+    <!-- _submenu 템플릿에서 submenus fragment 참조 -->
     <section>
         <nav th:replace="~{admin/outlines/_submenu::submenus}"></nav>
         <section layout:fragment="content"></section>
