@@ -9,5 +9,6 @@
     <a th:each="menu : ${subMenus}" th:object="${menu}"
        th:href="@{{url}(url=*{url})}" th:text="*{name}"
        th:classappend="${subMenuCode == menu.code} ? 'on'"></a> <!--subMenuCode의 값이 menu의 code 값과 같으면 클래스에 on 추가-->
+    <!--on클래스를 포함하면 하이라이팅 처리-->
 </nav>
 </html>
