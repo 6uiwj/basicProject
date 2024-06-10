@@ -14,26 +14,27 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin/config")
 @RequiredArgsConstructor
-public class BasicConfigController implements ExceptionProcessor {
+public class BasicConfigController implements ExceptionProcessor { //에러페이지 연동
 
-    //해당 메뉴가 on class가 추가되고 활성화된다구..?
-    @ModelAttribute("menuCode")
+    //메뉴코드 추가
+    @ModelAttribute("menuCode") //Model에 넣어서 전역 데이터로 유지(on 클래스 추가, 활성화)
     public String getMenuCode() {
+
         return "config";
     }
 
-    //양식보여주기
-    @GetMapping
+    //양식 보여주기
+    @GetMapping //메인 페이지니까 index로 하쟈
     public String index(@ModelAttribute BasicConfig config, Model model
     ) {
         return "admin/config/basic";
     }
 
-    //제출하기
+    //제출+저장하기
     @PostMapping
     public String save(BasicConfig config, Model model
     ){
-        return "admin/config/basic";
+        return "admin/config/basic"; //페이지 이동 없이 동일한 템플릿 보여주기
     }
 
 }
