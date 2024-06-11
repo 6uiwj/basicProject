@@ -1,8 +1,8 @@
-package org.choongang.admin.controllers;
+package org.choongang.admin.config.controllers;
 
 import lombok.Data;
 
-//커맨드 객체
+//관리자페이지 기본설정 커맨드 객체
 @Data
 public class BasicConfig {
     private String siteTitle; //사이트 제목

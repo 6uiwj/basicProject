@@ -81,7 +81,26 @@ nav.submenus a { height: 60px; line-height: 60px; padding: 0 40px; font-size: 1.
   /* 메뉴가 선택되었을 때 css 설정 */
 nav.submenus a.on { background: #596b99; color: #fff; font-weight: 500; }
 /* 내용 영역  E */
+/*뭐지!!*/
 
 /* 제목 공통 */
+/*line-height : 1; == 행간을 글자 크기와 동일하게 */
 h1 { margin: 0; padding: 0 0 20px 10px; line-height: 1; font-size: 2rem; border-bottom: 2px solid #222;
     margin-bottom: 30px; }
+
+/* 테이블 공통 S */
+.table_cols { border-spacing: 0; width: 100%; border-top: 2px solid #222; }
+  /* 테이블 제목, td */
+.table_cols th, .table_cols td { padding: 10px; border-bottom: 1px solid #d5d5d5; }
+.table_cols th { background: #ccc; font-weight: normal; }
+/* 테이블 공통 E */
+
+/* 입력 공통 S */
+input[type='text'],
+input[type='number'],
+input[type='email'],
+input[type='password'] { border: 1px solid #d5d5d5; height: 35px; padding: 0 10px;
+    width: 100% }
+textarea { border: 1px solid #d5d5d5; min-height: 200px; padding: 10px; resize:none; width: 100%; }
+select { border: 1px solid #d5d5d5; height: 35px; }
+/* 입력 공통 E */
