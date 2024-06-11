@@ -6,11 +6,12 @@
 <section layout:fragment="content">
     <h1>기본설정</h1>
     <h2>사이트 설정</h2>
+    <!--양식 만들어주기-->
     <form name = "frmSave" method="post" th:action="@{/admin/config}" autocomplete="off"
-        th:object = "${basicConfig}">
+        th:object = "${basicConfig}"> <!--BasicConfig 커맨드객체 연동-->
         <table class="table_cols">
             <tr>
-                <th>사이트 제목</th>
+                <th width="180">사이트 제목</th>
                 <td>
                     <input type="text" name ="siteTitle" th:field="*{siteTitle}">
                 </td>

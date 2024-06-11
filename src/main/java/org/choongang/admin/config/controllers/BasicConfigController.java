@@ -1,7 +1,6 @@
 package org.choongang.admin.config.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.choongang.admin.controllers.BasicConfig;
 import org.choongang.commons.ExceptionProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
