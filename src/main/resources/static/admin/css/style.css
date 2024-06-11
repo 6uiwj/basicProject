@@ -83,13 +83,16 @@ nav.submenus a.on { background: #596b99; color: #fff; font-weight: 500; }
 /* 내용 영역  E */
 /*뭐지!!*/
 
-/* 제목 공통 */
+/* 제목 공통 S */
 /*line-height : 1; == 행간을 글자 크기와 동일하게 */
 h1 { margin: 0; padding: 0 0 20px 10px; line-height: 1; font-size: 2rem; border-bottom: 2px solid #222;
     margin-bottom: 30px; }
+     /* 부제목 설정 */
+h2 { margin: 0 0 10px 0; font-size: 1.385rem; line-height: 1; }
+/* 제목 공통 E */
 
 /* 테이블 공통 S */
-.table_cols { border-spacing: 0; width: 100%; border-top: 2px solid #222; }
+.table_cols { border-spacing: 0; width: 100%; border-top: 2px solid #222; background: #fff; }
   /* 테이블 제목, td */
 .table_cols th, .table_cols td { padding: 10px; border-bottom: 1px solid #d5d5d5; }
 .table_cols th { background: #ccc; font-weight: normal; }
@@ -104,3 +107,17 @@ input[type='password'] { border: 1px solid #d5d5d5; height: 35px; padding: 0 10p
 textarea { border: 1px solid #d5d5d5; min-height: 200px; padding: 10px; resize:none; width: 100%; }
 select { border: 1px solid #d5d5d5; height: 35px; }
 /* 입력 공통 E */
+
+/* 버튼 공통 S */
+.submit_btns { text-align: center; margin: 30px 0;}
+/* inline-block == 글과 동일하게 한줄로 입력, 너비높이 설정 가능*/
+.submit_btns .btn { display: inline-block; min-width: 200px; height: 45px;
+    padding: 0 15px; border: 1px solid #222; background: #fff;
+    font-size: 1.4rem; font-weight: 500; color: #222; border-radius: 3px;
+    cursor: pointer; line-height: 43px; }
+    /* cursor: pointer == 마우스 올려놓으면 손가락모양!
+    버튼 태그 안의 글씨 가운데로 위치하도록(버튼은 자동 가운데 정렬이지만, 혹시 a태그로 버튼을 만들 경우를 대비하여
+     line-height: 43px (전체높이 45 - border 1*2px = 43) */
+    /* last-of-type : 마지막꺼!! */
+.submit_btns .btn:last-of-type { background: #222; color: #fff; }
+/* 버튼 공통 E */
