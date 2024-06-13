@@ -20,6 +20,7 @@ public class ConfigSaveService {
         //findById의 반환값: Optional
         Configs configs = repository.findById(code).orElseGet(Configs::new);
 
+        
         //ObjectMapper: 자바객체를 Json 문자열로 반환
         ObjectMapper om = new ObjectMapper();
         //날짜와 시간 추가
@@ -30,6 +31,7 @@ public class ConfigSaveService {
             //configs엔티티의 data필드가 Json형태이므로 Json으로 바꿔 준 후 저장
             String jsonString = om.writeValueAsString(data);
             configs.setData(jsonString);
+            configs.setCode(code); //새로 만든 건 코드값이 없으므로 넣어주기
             repository.saveAndFlush(configs);
         } catch (JsonProcessingException e) {
             //에러메시지는 출력
