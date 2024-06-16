@@ -17,7 +17,8 @@ public class ConfigInfoService {
     //Json형태를 원래 형태로 바꿔줘야 하기 때문에 generic 형태 필요
 
     private final ConfigRepository repository;
-    //단순한 구조일 때 (basicConfig 객체 등..)
+    //단순한 구조일 때 (basicConfig 객체 등..) = 구조 1개!
+    //class class 형태
     //메서드 오버로드
     public <T> T get(String code, Class<T> clazz) {
         //typereference가 null값이면 처리하지 않고 class class가 있으면 처리
@@ -25,6 +26,7 @@ public class ConfigInfoService {
     }
 
     //복합적 구조일 때(map, list 등)
+    //TypeReference
     //메서드 오버로드
     public <T> T get(String code, TypeReference<T> typeReference) {
         //class class가 null값이면 typereference가 처리
