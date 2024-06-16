@@ -46,9 +46,9 @@ public class ConfigInfoService {
         //Json 형태를 원래 형태로 반환?
         try {
             T data = null;
-            if (clazz==null) { //TypeReference로 처리
+            if (clazz==null) { //clazz가 null이면 TypeReference로 처리
                 data = om.readValue(jsonString, new TypeReference<T>() {});
-            } else { // Clas로 처리
+            } else { // TypeReference가 null이면 Clas로 처리
                 data = om.readValue(jsonString, clazz);
             }
             return data;
