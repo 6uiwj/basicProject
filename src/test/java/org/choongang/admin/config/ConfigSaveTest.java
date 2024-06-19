@@ -12,6 +12,7 @@ import org.springframework.test.context.TestPropertySource;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
+import java.util.Optional;
 
 //admin config 저장/조회 테스트
 @SpringBootTest
@@ -37,14 +38,14 @@ public class ConfigSaveTest {
         saveService.save("basic", config);
 
         //조회 테스트 - class class
-        BasicConfig config2 = infoService.get("basic", BasicConfig.class);
+        BasicConfig config2 = infoService.get("basic", BasicConfig.class).get();
         System.out.println(config2);
 
         //조회테스트 - class class가 아닌 복합적구조 테스트
         //-> 이럴 때에는 typeReference를 써야 함 -> 왜냐구? 모른다 ㅎ 그렇게 쓰랭..
-        Map<String, String> config3 = infoService.get("basic", new
+        Optional<Map<String, String>> opt = infoService.get("basic", new
                 TypeReference<>() {});
-        System.out.println(config3);
+        System.out.println(opt.get());
 
     }
 

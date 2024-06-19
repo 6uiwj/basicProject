@@ -1,6 +1,8 @@
 package org.choongang.admin.config.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.choongang.admin.config.service.ConfigInfoService;
+import org.choongang.admin.config.service.ConfigSaveService;
 import org.choongang.commons.ExceptionProcessor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,6 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/admin/config")
 @RequiredArgsConstructor
 public class BasicConfigController implements ExceptionProcessor { //에러페이지 연동
+
+    private final ConfigSaveService saveService;
+    private final ConfigInfoService infoService;
 
     //메뉴코드 추가
     @ModelAttribute("menuCode") //Model에 넣어서 전역 데이터로 유지(on 클래스 추가, 활성화)
