@@ -28,9 +28,13 @@ public class BasicConfigController implements ExceptionProcessor { //에러페�
     }
 
     //양식 보여주기
+    //매개변수에 BasicConfig 이제 필요없으니 지우고, 직접 불러오자
     @GetMapping //메인 페이지니까 index로 하쟈
-    public String index(@ModelAttribute BasicConfig config, Model model
-    ) {
+    public String index(Model model) {
+        //가져오고, 만약 없으면 비어있는 커맨드 객체 생성
+        BasicConfig config = infoService.get("basic", BasicConfig.class).orElseGet(BasicConfig::new);
+
+        model.addAttribute("basicConfig", config);
         return "admin/config/basic";
     }
 
@@ -38,6 +42,9 @@ public class BasicConfigController implements ExceptionProcessor { //에러페�
     @PostMapping
     public String save(BasicConfig config, Model model
     ){
+        saveService.save("basic", config);
+        //저장 후 저장하였다는 메시지 띄워주기
+        model.addAttribute("message", "저장되었습니다.");
         return "admin/config/basic"; //페이지 이동 없이 동일한 템플릿 보여주기
     }
 
