@@ -1,0 +1,8 @@
+<!--admin쪽 공통 템플릿-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!--message 속성값이 존재하면 message 출력-->
+    <div th:fragment="message" th:if="${message != null}"
+    th:text="${message}" class="message_box"></div>
+
+</html>

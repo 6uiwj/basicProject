@@ -44,6 +44,7 @@ public class BasicConfigController implements ExceptionProcessor { //에러페�
     ){
         saveService.save("basic", config);
         //저장 후 저장하였다는 메시지 띄워주기
+        //메시지라는 문구가 있으면 알아서 출력될 수 있게
         model.addAttribute("message", "저장되었습니다.");
         return "admin/config/basic"; //페이지 이동 없이 동일한 템플릿 보여주기
     }

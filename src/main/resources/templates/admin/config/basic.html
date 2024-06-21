@@ -4,6 +4,8 @@
       layout:decorate="~{admin/layouts/main}">
 
 <section layout:fragment="content">
+    <!--관리자페이지 메시지 템플릿 추가-->
+    <div th:replace="~{admin/commons/_message::message}"></div>
     <h1>기본설정</h1>
     <h2>사이트 설정</h2>
     <!--양식 만들어주기-->
