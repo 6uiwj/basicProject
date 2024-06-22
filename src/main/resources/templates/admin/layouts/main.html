@@ -5,7 +5,10 @@
 <head>
     <meta charset="UTF-8">
     <!--페이지 타이틀이 존재한다면 타이틀 노출-->
-    <title th:if="${pageTitle != null}" th:text="${pageTitle}"></title>
+    <title>
+        <th:block th:if="${}
+        <th:block th:if="${siteConfig.siteTitle != null}" th:text="${siteConfig.siteTitle}"></th:block>
+    </title>
 
 
     <!--css-->
