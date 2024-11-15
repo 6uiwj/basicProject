@@ -27,6 +27,12 @@ public class BasicConfigController implements ExceptionProcessor { //에러페�
         return "config";
     }
 
+
+    @ModelAttribute("pageTitle")
+    public String getPageTitle() {
+        return "기본설정";
+    }
+
     //양식 보여주기
     //매개변수에 BasicConfig 이제 필요없으니 지우고, 직접 불러오자
     @GetMapping //메인 페이지니까 index로 하쟈
